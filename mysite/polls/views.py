@@ -1,4 +1,4 @@
-from django.db.models import F
+from django.db.models import F, Count
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
@@ -22,7 +22,7 @@ class IndexView(generic.ListView):
         Return the last five published questions (not including those set to be
         published in the future).
         """
-        return Question.objects.filter(pub_date__lte=timezone.now(), choice__isnull=False).distinct().order_by("-pub_date")[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).annotate(num_choices=Count('choice')).filter(num_choices__gt=0).order_by("-pub_date")[:5]
 
 
 

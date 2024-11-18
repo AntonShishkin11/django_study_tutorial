@@ -3,7 +3,7 @@ import datetime
 from django.test import TestCase
 from django.utils import timezone
 from django.urls import reverse
-from .models import Question
+from .models import Question, Choice
 
 
 class QuestionModelTests(TestCase):
@@ -43,8 +43,22 @@ def create_question(question_text, days):
     time = timezone.now() + datetime.timedelta(days=days)
     return Question.objects.create(question_text=question_text, pub_date=time)
 
+def create_choice(choice_text, pk=None):
+    """
+    Create a choice with given text and pk. default pk = None
+    """
+    return Choice.objects.create(choice_text=choice_text, question_id=pk)
+
+
 
 class QuestionIndexViewTests(TestCase):
+
+    def test_no_choice(self):
+        question = create_question(question_text='new question', days=-1)
+        response = self.client.get(reverse("polls:index"))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, question.question_text)
+
     def test_no_questions(self):
         """
         If no questions exist, an appropriate message is displayed.
@@ -54,12 +68,13 @@ class QuestionIndexViewTests(TestCase):
         self.assertContains(response, "No polls are available.")
         self.assertQuerySetEqual(response.context["latest_question_list"], [])
 
-    def test_past_question(self):
+    def test_past_question_with_choice(self):
         """
         Questions with a pub_date in the past are displayed on the
         index page.
         """
         question = create_question(question_text="Past question.", days=-30)
+        choice = create_choice(choice_text="past choice", pk=question.id)
         response = self.client.get(reverse("polls:index"))
         self.assertQuerySetEqual(
             response.context["latest_question_list"],
@@ -72,6 +87,7 @@ class QuestionIndexViewTests(TestCase):
         the index page.
         """
         create_question(question_text="Future question.", days=30)
+
         response = self.client.get(reverse("polls:index"))
         self.assertContains(response, "No polls are available.")
         self.assertQuerySetEqual(response.context["latest_question_list"], [])
@@ -82,6 +98,7 @@ class QuestionIndexViewTests(TestCase):
         are displayed.
         """
         question = create_question(question_text="Past question.", days=-30)
+        choice = create_choice(choice_text="past choice", pk=question.id)
         create_question(question_text="Future question.", days=30)
         response = self.client.get(reverse("polls:index"))
         self.assertQuerySetEqual(
@@ -95,6 +112,8 @@ class QuestionIndexViewTests(TestCase):
         """
         question1 = create_question(question_text="Past question 1.", days=-30)
         question2 = create_question(question_text="Past question 2.", days=-5)
+        choice1 = create_choice(choice_text="past choice", pk=question1.id)
+        choice2 = create_choice(choice_text="past choice", pk=question2.id)
         response = self.client.get(reverse("polls:index"))
         self.assertQuerySetEqual(
             response.context["latest_question_list"],

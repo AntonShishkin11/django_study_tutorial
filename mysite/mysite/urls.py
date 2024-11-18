@@ -20,7 +20,7 @@ from django.urls import path, include
 from polls.views import homepage
 
 urlpatterns = [
-path('', homepage, name='home'),
+path('', homepage),
     path("polls/", include("polls.urls")),
     path('admin/', admin.site.urls),
 

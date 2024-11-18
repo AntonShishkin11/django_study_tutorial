@@ -1,0 +1,21 @@
+li a {
+    color: green;
+}
+
+body {
+    background: url("images/bluebackground.jpg") no-repeat;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.btn.btn-primary {
+    font-size: 50px;
+    text-decoration: none;
+    color: rgba(255, 0, 0);
+}

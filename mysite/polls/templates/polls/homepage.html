@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Добро пожаловать на сайт</h1>
-        <a href="{% url 'polls:index' %}" class="btn btn-primary">Polls</a>
+        <h1>Добро пожаловать на сайт с опросами</h1>
+        <a href="{% url 'polls:index' %}" class="btn btn-primary">➡️Жми сюда⬅️</a>
     </div>
 </body>
 </html>

@@ -1,11 +1,16 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
 <head>
+
     <meta charset="UTF-8">
     <title>Опросы</title>
+
 </head>
 <body>
 <fieldset>
+    <legend><h1>Опросы</h1></legend>
 {% if latest_question_list %}
     <ul >
     {% for question in latest_question_list %}

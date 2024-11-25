@@ -7,6 +7,11 @@
     <title>Главная страница</title>
 </head>
 <body>
+<nav class="navbar">
+    <ul>
+        <li><a href="{% url 'polls:index' %}">Опросы</a></li>
+    </ul>
+</nav>
     <div class="container">
         <h1>Добро пожаловать на сайт с опросами</h1>
         <a href="{% url 'polls:index' %}" class="btn btn-primary">➡️Жми сюда⬅️</a>

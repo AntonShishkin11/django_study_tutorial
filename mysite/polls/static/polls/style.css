@@ -1,21 +1,139 @@
-li a {
-    color: green;
-}
-
+/* Общие стили для фона и текста */
 body {
-    background: url("images/bluebackground.jpg") no-repeat;
+    background: linear-gradient(to right, #74ebd5, #9face6);
+    font-family: 'Verdana', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
 }
 
+/* Контейнер для центровки */
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Стиль заголовков */
 h1 {
     text-align: center;
+    font-size: 2.5em;
+    color: #ffffff;
+    margin: 20px 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
-.container {
+/* Стили для поля fieldset */
+fieldset {
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+/* Выравнивание legend */
+legend {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Стили для списка */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+ul li {
+    padding: 10px 0;
+    font-size: 1.2em;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+/* Стили для ссылок */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+/* Кнопки */
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    margin: 20px auto 0;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Радиокнопки и метки */
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+label {
+    font-size: 1.1em;
+    color: #333;
+    cursor: pointer;
+    display: block;
+    margin: 5px 0;
+}
+
+/* Сообщение об ошибке */
+p strong {
+    color: #e74c3c;
+    font-size: 1em;
     text-align: center;
 }
 
-.btn.btn-primary {
-    font-size: 50px;
-    text-decoration: none;
-    color: rgba(255, 0, 0);
+/* Flexbox для выравнивания форм */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стили для текста "No polls are available" */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
 }
